@@ -19,7 +19,6 @@ export async function loginService(email) {
   
   //  Buscamos el usuairo por email y  guardamos su valor
   const user = await User.findOne({ email });
-
   // Aqui vamos a crear el token, con el .sign  // recibe 3 parametros, payload= id y role, para luego leerlo en el middleware, segundo parametro, process...
   // es la clave que guardamos  en el .env, token al final sera algo tipo : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
   return jwt.sign(
