@@ -1,4 +1,5 @@
 import Movie from "../models/movie.model.js";
+import Session from "../models/session.model.js";
 
 // PUBLIC
 export async function getMoviesService(){
