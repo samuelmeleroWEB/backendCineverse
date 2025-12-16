@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteMovieController, getMovieController, getMoviesController, getMovieSessionController, getMvpMoviesController, postMovieController, postMoviesController, putMovieController, putMvpMoviesController } from "../controllers/movie.controller.js";
+import { deleteMovieController, getMovieController, getMoviesController, getMovieSessionController, getMvpMoviesController, postMovieController, putMovieController, putMvpMoviesController } from "../controllers/movie.controller.js";
 import { authMiddleware, isAdmin } from "../middlewares/auth.middleware.js";
 
 const router = Router();
