@@ -5,6 +5,7 @@ import authRoutes from './routes/auth.routes.js';
 import movieRoutes from './routes/movie.routes.js'
 import roomRoutes from './routes/room.routes.js'
 import sessionRoutes from './routes/session.routes.js'
+import bookingRoutes from './routes/booking.routes.js'
 const app = express()
 const PORT = process.env.PORT || 4000; // cogemos el puerto del punto .env o por defecto que use 4000
 
@@ -30,7 +31,8 @@ app.use('/rooms', roomRoutes)
 // Sessions
 app.use('/sessions', sessionRoutes)
 
-
+// Booking
+app.use('/bookings', bookingRoutes)
 
 
 app.listen(PORT, ()=>{
