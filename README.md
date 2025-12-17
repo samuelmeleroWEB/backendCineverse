@@ -175,6 +175,7 @@ Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
 PORT=4000
 MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/cineverse
 JWT_SECRET=tu_secreto_jwt
+```
 
 ## 📁 Estructura del proyecto
 
