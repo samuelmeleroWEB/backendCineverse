@@ -36,9 +36,6 @@ export async function getMovieSessionController(req, res) {
   try {
     const { id } = req.params;
     const sessions = await getMovieSessionService(id)
-      .populate("room")
-      .sort({ startTime: 1 });
-
     return res.status(200).json(sessions);
   } catch (error) {
     console.error("Error en GET /movies/:id/sessions:", error);
