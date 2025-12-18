@@ -33,6 +33,7 @@ export async function postBookingController(req, res) {
         .json({ message: "No hay suficientes asientos disponibles" });
     }
 
+    // comprobar si los asientos están ocupados
     const alreadyTaken = seats.some((seat) =>
       session.occupiedSeats.includes(seat)
     );
@@ -49,20 +50,22 @@ export async function postBookingController(req, res) {
     let menusNormalized = [];
 
     if (Array.isArray(menus) && menus.length > 0) {
+      // normalizamos los menus para asegurarnos de que los datos que nos lleguen sean válidos
       menusNormalized = menus
         .filter(
-          (m) => m && typeof m.name === "string" && m.name.trim().length > 0
+          (m) => m && typeof m.name === "string" && m.name.trim().length > 0 // comprobamos que el menu tenga un nombre válido, es decir, que sea un string y no sea una cadena vacía
         )
         .map((m) => ({
-          name: m.name.trim(),
+          name: m.name.trim(), // nombre sin espacios en blanco al principio y al final
           quantity:
-            typeof m.quantity === "number" && m.quantity > 0 ? m.quantity : 1,
+            typeof m.quantity === "number" && m.quantity > 0 ? m.quantity : 1, // si la cantidad es un número válido lo mantenemos sino ponemos 1 por defecto
           pricePerUnit:
-            typeof m.pricePerUnit === "number" && m.pricePerUnit >= 0
+            typeof m.pricePerUnit === "number" && m.pricePerUnit >= 0 // si el precio por unidad es válido lo mantenemos sino ponemos 0 por defecto
               ? m.pricePerUnit
               : 0,
         }));
 
+        // sumamos el precio de todos los menus
       menusTotal = menusNormalized.reduce(
         (sum, m) => sum + m.pricePerUnit * m.quantity,
         0
@@ -77,6 +80,7 @@ export async function postBookingController(req, res) {
       menusNormalized
     );
 
+    // actualizamos los asientos ocupados y los asientos disponibles
     session.occupiedSeats = [...session.occupiedSeats, ...seats];
     session.availableSeats -= seats.length;
     await session.save();

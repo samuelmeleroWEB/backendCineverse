@@ -26,6 +26,7 @@ export async function getMyBookingsService(userId) {
     if (!start) return false;
     return new Date(start).getTime() >= now.getTime();
   });
+  // Una vez tenemos las reservas futuras, recorre un array de objetos y nos devuelve todas las reservas que tiene el usuario, con titutlo, sesion, sala, fecha, si no hay menos no los mete
   return upcoming.map((b) => ({
     id: b._id.toString(),
     createdAt: b.createdAt,

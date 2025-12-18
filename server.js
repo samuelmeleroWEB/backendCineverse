@@ -21,6 +21,8 @@ const PORT = process.env.PORT || 4000; // cogemos el puerto del punto .env o por
 app.use(cors()); // permitira peticiones desde el front
 app.use(express.json());
 
+// usamos path para que nos convierta "uploads" en una ruta absoluta del sistema.
+// usamos express.static para que todo lo que este dentro de la carpeta "uploads" pueda ser accedido públicamente
 app.use("/uploads", express.static(path.resolve("uploads")));
 // LOGIN Y REGISTRO
 app.use("/auth", authRoutes);
